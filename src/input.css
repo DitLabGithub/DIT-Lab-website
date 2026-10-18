@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ditlab-blue: #1A1F5E;    /* Donkerblauw */
+  --color-ditlab-title: #4950BC;   /* Primair blauw */
+  --color-ditlab-purple: #4950BC;  /* same as primair blauw (footer button) */
+  --color-ditlab-gray: #F4F6FB;    /* Lichtgrijs */
+  --color-ditlab-teal: #009E9E;    /* Accent */
+  --color-ditlab-pressed: #0B0E33;
+  --color-ditlab-inactive: #3F4363;
+  --color-ditlab-teal-dark: #007F7F;
+
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+}
+
+/* Headings use Space Grotesk */
+@layer base {
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Hide text that's only for screen readers */
+.screen-reader-text {
+  @apply sr-only;
+}
+
+/* Menu links */
+#primary-menu a {
+  @apply text-black hover:text-ditlab-teal;
+}
+
+/* The page you're on: teal and underlined, like "Artikelen" in the Figma */
+#primary-menu .current-menu-item > a {
+  @apply text-ditlab-teal underline underline-offset-4;
+}
+
+/* Button from the style tile */
+.btn {
+  @apply inline-block rounded-lg bg-ditlab-teal px-5 py-2 text-sm font-semibold text-white transition-colors;
+}
+.btn:hover {
+  @apply bg-ditlab-purple;
+}
+.btn:active {
+  @apply bg-ditlab-pressed text-white/90;   /* Very dark blue when clicked */
+}
+.btn:disabled,
+.btn.is-inactive {
+  @apply bg-ditlab-inactive text-white/50 font-normal pointer-events-none;   /* Grey "inactive" button */
+}
