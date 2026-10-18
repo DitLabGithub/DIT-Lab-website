@@ -32,8 +32,32 @@
 }
 
 /* The page you're on: teal and underlined, like "Artikelen" in the Figma */
-#primary-menu .current-menu-item > a {
+/* also underline "Over DIT-Lab" when you're on one of its dropdown pages */
+#primary-menu .current-menu-item > a,
+#primary-menu .current-menu-ancestor > a {
   @apply text-ditlab-teal underline underline-offset-4;
+}
+
+/* NEW: Dropdown menu */
+#primary-menu .menu-item-has-children {
+  @apply relative;
+}
+
+#primary-menu .sub-menu {
+  @apply hidden absolute top-full left-0 mt-3 min-w-[200px] py-2 bg-white rounded-xl shadow-lg z-50;
+}
+
+#primary-menu .menu-item-has-children.is-open > .sub-menu {
+  @apply block;
+}
+
+#primary-menu .sub-menu a {
+  @apply block px-4 py-2 whitespace-nowrap no-underline hover:bg-ditlab-gray;
+}
+
+/* NEW: active page inside the dropdown */
+#primary-menu .sub-menu .current-menu-item > a {
+  @apply text-ditlab-teal font-semibold no-underline;
 }
 
 /* Button from the style tile */
