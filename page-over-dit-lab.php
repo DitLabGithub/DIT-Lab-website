@@ -14,9 +14,9 @@ $img = get_template_directory_uri() . '/assets/img/';
     </div>
 
     <div class="grid grid-cols-6 gap-3">
-      <img src="<?php echo esc_url($img . 'over-1.jpg'); ?>" alt="" class="col-span-4 h-44 w-full object-cover rounded-2xl shadow-lg">
-      <img src="<?php echo esc_url($img . 'over-2.jpg'); ?>" alt="" class="col-span-2 h-44 w-full object-cover rounded-2xl shadow-lg">
-      <img src="<?php echo esc_url($img . 'over-3.jpg'); ?>" alt="" class="col-span-4 col-start-2 h-44 w-full object-cover rounded-2xl shadow-lg">
+      <img src="<?php echo esc_url($img . 'overDitLabImg1.png'); ?>" alt="" class="col-span-4 h-44 w-full object-cover rounded-2xl shadow-lg">
+      <img src="<?php echo esc_url($img . 'overDitLabImg2.png'); ?>" alt="" class="col-span-2 h-44 w-full object-cover rounded-2xl shadow-lg">
+      <img src="<?php echo esc_url($img . 'overDitLab3.png'); ?>" alt="" class="col-span-4 col-start-2 h-44 w-full object-cover rounded-2xl shadow-lg">
     </div>
   </section>
 
@@ -33,13 +33,13 @@ $img = get_template_directory_uri() . '/assets/img/';
           <li>Gericht advies: Met onze inzichten inspireren en adviseren we DUO om een betrouwbare en wendbare publieke dienstverlener te blijven.</li>
         </ul>
       </div>
-      <img src="<?php echo esc_url($img . 'over-team.jpg'); ?>" alt="" class="w-full rounded-2xl shadow-lg object-cover">
+      <img src="<?php echo esc_url($img . 'overDitLabImg1.png'); ?>" alt="" class="w-full rounded-2xl shadow-lg object-cover">
     </div>
   </section>
 
   <!-- Hoe wij werken -->
   <section class="max-w-6xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-12 items-center text-[#1A1F5E]">
-    <img src="<?php echo esc_url($img . 'over-team.jpg'); ?>" alt="" class="w-full rounded-2xl shadow-lg object-cover">
+    <img src="<?php echo esc_url($img . 'overDitLabImg1.png'); ?>" alt="" class="w-full rounded-2xl shadow-lg object-cover">
     <div>
       <h2 class="text-4xl font-bold mb-4">Hoe wij werken</h2>
       <p class="mb-6">Bij DIT-Lab geloven we in leren door te doen. Dit maken we zichtbaar via:</p>
