@@ -227,3 +227,7 @@ function ditlab_register_team() {
   ));
 }
 add_action('init', 'ditlab_register_team');
+
+require get_template_directory() . '/inc/post-types.php';
+
+require get_template_directory() . '/inc/acf-fields.php';
