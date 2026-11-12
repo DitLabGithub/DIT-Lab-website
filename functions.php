@@ -210,3 +210,21 @@ function ditlab_filter_dropdown($name, $label, $options, $current) {
     </details>
     <?php
 }
+
+function ditlab_register_vacature() {
+    register_post_type( 'vacature', array(
+        'labels' => array(
+            'name'          => 'Vacatures',
+            'singular_name' => 'Vacature',
+            'add_new_item'  => 'Nieuwe vacature',
+            'edit_item'     => 'Vacature bewerken',
+        ),
+        'public'       => true,
+        'has_archive'  => false,
+        'menu_icon'    => 'dashicons-businessperson',
+        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+        'rewrite'      => array( 'slug' => 'vacature' ),
+        'show_in_rest' => true,
+    ) );
+}
+add_action( 'init', 'ditlab_register_vacature' );
