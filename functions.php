@@ -179,6 +179,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 function ditlab_tailwind() {
 	wp_enqueue_style('ditlab-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap', array(), null);
     wp_enqueue_style('ditlab-tailwind', get_template_directory_uri() . '/assets/tailwind.css', array(), filemtime(get_template_directory() . '/assets/tailwind.css'));
+	wp_enqueue_script('dit-lab-dropdown', get_template_directory_uri() . '/assets/js/dropdown.js', array(), _S_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'ditlab_tailwind');
 
@@ -210,3 +211,19 @@ function ditlab_filter_dropdown($name, $label, $options, $current) {
     </details>
     <?php
 }
+
+// Team members
+function ditlab_register_team() {
+  register_post_type('teamlid', array(
+    'labels' => array(
+      'name' => 'Team',
+      'singular_name' => 'Teamlid',
+      'add_new_item' => 'Nieuw teamlid',
+    ),
+    'public' => false,
+    'show_ui' => true,
+    'menu_icon' => 'dashicons-groups',
+    'supports' => array('title', 'thumbnail'),
+  ));
+}
+add_action('init', 'ditlab_register_team');
