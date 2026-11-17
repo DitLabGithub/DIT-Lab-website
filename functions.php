@@ -1,62 +1,25 @@
 <?php
-/**
- * DIT-Lab functions and definitions
- *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package DIT-Lab
- */
 
 if ( ! defined( '_S_VERSION' ) ) {
-	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
 }
 
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
+// Theme setup: title tag, thumbnails, menu, logo and HTML5 support
 function dit_lab_setup() {
-	/*
-		* Make theme available for translation.
-		* Translations can be filed in the /languages/ directory.
-		* If you're building a theme based on DIT-Lab, use a find and replace
-		* to change 'dit-lab' to the name of your theme in all the template files.
-		*/
 	load_theme_textdomain( 'dit-lab', get_template_directory() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
 
-	/*
-		* Let WordPress manage the document title.
-		* By adding theme support, we declare that this theme does not use a
-		* hard-coded <title> tag in the document head, and expect WordPress to
-		* provide it for us.
-		*/
 	add_theme_support( 'title-tag' );
 
-	/*
-		* Enable support for Post Thumbnails on posts and pages.
-		*
-		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		*/
 	add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'dit-lab' ),
 		)
 	);
 
-	/*
-		* Switch default core markup for search form, comment form, and comments
-		* to output valid HTML5.
-		*/
 	add_theme_support(
 		'html5',
 		array(
@@ -70,7 +33,6 @@ function dit_lab_setup() {
 		)
 	);
 
-	// Set up the WordPress core custom background feature.
 	add_theme_support(
 		'custom-background',
 		apply_filters(
@@ -82,14 +44,8 @@ function dit_lab_setup() {
 		)
 	);
 
-	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
-	/**
-	 * Add support for core custom logo.
-	 *
-	 * @link https://codex.wordpress.org/Theme_Logo
-	 */
 	add_theme_support(
 		'custom-logo',
 		array(
@@ -102,23 +58,13 @@ function dit_lab_setup() {
 }
 add_action( 'after_setup_theme', 'dit_lab_setup' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
+// Sets the default content width
 function dit_lab_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'dit_lab_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'dit_lab_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
+// Registers the sidebar
 function dit_lab_widgets_init() {
 	register_sidebar(
 		array(
@@ -134,13 +80,8 @@ function dit_lab_widgets_init() {
 }
 add_action( 'widgets_init', 'dit_lab_widgets_init' );
 
-/**
- * Enqueue scripts and styles.
- */
+// Loads the navigation script (and comment reply script when needed)
 function dit_lab_scripts() {
-	// wp_enqueue_style( 'dit-lab-style', get_stylesheet_uri(), array(), _S_VERSION );
-	// wp_style_add_data( 'dit-lab-style', 'rtl', 'replace' );
-
 	wp_enqueue_script( 'dit-lab-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -149,40 +90,26 @@ function dit_lab_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'dit_lab_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
 require get_template_directory() . '/inc/custom-header.php';
 
-/**
- * Custom template tags for this theme.
- */
 require get_template_directory() . '/inc/template-tags.php';
 
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
 require get_template_directory() . '/inc/template-functions.php';
 
-/**
- * Customizer additions.
- */
 require get_template_directory() . '/inc/customizer.php';
 
-/**
- * Load Jetpack compatibility file.
- */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+// Loads the Google fonts and the compiled Tailwind CSS
 function ditlab_tailwind() {
 	wp_enqueue_style('ditlab-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap', array(), null);
     wp_enqueue_style('ditlab-tailwind', get_template_directory_uri() . '/assets/tailwind.css', array(), filemtime(get_template_directory() . '/assets/tailwind.css'));
 }
 add_action('wp_enqueue_scripts', 'ditlab_tailwind');
 
-// Save reading time (minutes) on every post, so we can sort on it
+// Saves the reading time (minutes) on every post, so we can sort on it
 function ditlab_save_leestijd($post_id) {
     if (wp_is_post_revision($post_id)) return;
     $words = str_word_count(wp_strip_all_tags(get_post_field('post_content', $post_id)));
@@ -190,7 +117,7 @@ function ditlab_save_leestijd($post_id) {
 }
 add_action('save_post_post', 'ditlab_save_leestijd');
 
-// Custom dropdown for the Artikelen filters
+// Builds one dropdown for the Artikelen filters
 function ditlab_filter_dropdown($name, $label, $options, $current) {
     $shown = ($current !== '' && isset($options[$current])) ? $options[$current] : $label;
     ?>
@@ -209,4 +136,49 @@ function ditlab_filter_dropdown($name, $label, $options, $current) {
         </div>
     </details>
     <?php
+}
+
+// Adds the Vacatures content type
+function ditlab_register_vacature() {
+    register_post_type( 'vacature', array(
+        'labels' => array(
+            'name'          => 'Vacatures',
+            'singular_name' => 'Vacature',
+            'add_new_item'  => 'Nieuwe vacature',
+            'edit_item'     => 'Vacature bewerken',
+        ),
+        'public'       => true,
+        'has_archive'  => false,
+        'menu_icon'    => 'dashicons-businessperson',
+        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+        'rewrite'      => array( 'slug' => 'vacature' ),
+        'show_in_rest' => true,
+    ) );
+}
+add_action( 'init', 'ditlab_register_vacature' );
+
+// Adds the Agenda content type
+function ditlab_register_agenda() {
+    register_post_type( 'agenda', array(
+        'labels' => array(
+            'name'          => 'Agenda',
+            'singular_name' => 'Agenda-item',
+            'add_new_item'  => 'Nieuw agenda-item',
+            'edit_item'     => 'Agenda-item bewerken',
+        ),
+        'public'       => true,
+        'has_archive'  => false,
+        'menu_icon'    => 'dashicons-calendar-alt',
+        'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+        'rewrite'      => array( 'slug' => 'agenda' ),
+        'show_in_rest' => true,
+    ) );
+}
+add_action( 'init', 'ditlab_register_agenda' );
+
+// Returns the agenda date as Dutch text, e.g. Donderdag 10-6-2026
+function ditlab_agenda_date($post_id) {
+    $date = get_field('event_date', $post_id);
+    if (!$date) return '';
+    return ucfirst(date_i18n('l j-n-Y', strtotime($date)));
 }
