@@ -31,7 +31,6 @@
   @apply text-black hover:text-ditlab-teal;
 }
 
-/* The page you're on: teal and underlined, like "Artikelen" in the Figma */
 #primary-menu .current-menu-item > a {
   @apply text-ditlab-teal underline underline-offset-4;
 }
@@ -49,4 +48,81 @@
 .btn:disabled,
 .btn.is-inactive {
   @apply bg-ditlab-inactive text-white/50 font-normal pointer-events-none;   /* Grey "inactive" button */
+}
+
+/* Contact form (WPForms) */
+.contact-card .wpforms-container {
+  margin: 0 !important;
+}
+
+.contact-card .wpforms-field {
+  padding: 0 0 10px 0 !important;
+}
+
+/* hide labels, we use placeholders like in the Figma */
+.contact-card .wpforms-field-label {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.contact-card input[type="text"],
+.contact-card input[type="email"],
+.contact-card input[type="tel"],
+.contact-card textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  background: #D5DAE8 !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  color: #1A1F5E !important;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+.contact-card textarea {
+  min-height: 150px !important;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline: none !important;
+  border-color: #009E9E !important;
+  box-shadow: 0 0 0 2px #009E9E55 !important;
+}
+
+.contact-card button[type="submit"] {
+  background: #009E9E !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px 26px !important;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+}
+.contact-card button[type="submit"]:hover  { background: #4950BC !important; }
+.contact-card button[type="submit"]:active { background: #10133A !important; }
+
+/* error + success messages */
+.contact-card label.wpforms-error { color: #ffb4b4 !important; }
+.contact-card .wpforms-confirmation-container-full {
+  background: #4950BC !important;
+  border: none !important;
+  border-radius: 8px;
+}
+
+.contact-card .wpforms-confirmation-container-full,
+.contact-card .wpforms-confirmation-container-full p {
+  color: #fff !important;
+}
+
+.btn-current {
+  background: #4B4D6E !important;
+  color: #C9CCDA !important;
+  pointer-events: none;
 }
