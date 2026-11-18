@@ -21,12 +21,12 @@
 	$is_home = is_front_page();
 	$waves   = get_template_directory_uri() . '/assets/img/waves.png';
 	?>
-	<header id="masthead" class="relative isolate px-4 pt-4 <?php echo $is_home ? 'pb-32' : ''; ?>">
+	<header id="masthead" class="relative isolate px-4 pt-4 <?php echo $is_home ? 'pb-12' : ''; ?>">
 		<?php if ( $is_home ) : ?>
-			<div class="absolute inset-0 -z-10 bg-cover bg-bottom bg-no-repeat [mask-image:linear-gradient(to_bottom,black_70%,transparent)]"
+			<div class="absolute inset-0 -z-10 bg-cover bg-bottom bg-no-repeat"
 				style="background-image: url('<?php echo esc_url( $waves ); ?>');"></div>
 		<?php endif; ?>
-		<div class="max-w-[1400px] mx-auto flex items-center justify-between gap-6 rounded-full border border-ditlab-teal/40 shadow-sm bg-white px-6 py-2">
+		<div class="max-w-[1400px] mx-auto flex items-center justify-between gap-6 rounded-full border border-ditlab-teal/40 shadow-sm bg-white/85 backdrop-blur-sm px-6 py-2">
 
 			<!-- Logo -->
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="shrink-0">
@@ -49,6 +49,6 @@
 				?>
 			</nav>
 			<!-- Contact button -->
-			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn shrink-0">Neem contact op</a>
+			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="btn shrink-0 <?php echo is_page( 'contact' ) ? 'btn-current' : ''; ?>">Neem contact op</a>
 		</div>
 	</header>
